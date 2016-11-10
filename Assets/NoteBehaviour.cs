@@ -21,7 +21,7 @@ public class NoteBehaviour : MonoBehaviour
 
 
 
-  /*  void OnTriggerExit(Collider other)
+   void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "TimeSche")
         {
@@ -29,7 +29,7 @@ public class NoteBehaviour : MonoBehaviour
         }
     }
 
-    */
+    
     IEnumerator waitForNextSoundTreshHold()
     {
         yield return new WaitForSeconds(3);
@@ -44,10 +44,10 @@ public class NoteBehaviour : MonoBehaviour
 
     // Update is called once per frame
         void Update () {
-
+        //hello
             if (!col)
             {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed*Time.deltaTime);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             }
 
             if (col)
