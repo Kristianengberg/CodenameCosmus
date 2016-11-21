@@ -17,7 +17,7 @@ public class SoundModification : MonoBehaviour
     public float speed = 20;
     protected Vector3 locationPoint = new Vector3(0, 1, 0);
     protected bool waitForSound;
-    protected AudioSource audi;
+   
 
 
     // Use this for initialization
