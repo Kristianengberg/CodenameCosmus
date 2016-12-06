@@ -9,6 +9,8 @@ public class NoteBehaviour : MonoBehaviour
     protected bool waitForSound;
     protected AudioSource audi;
 
+    protected GameObject soundController;
+
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "TimeSche")
@@ -39,7 +41,10 @@ public class NoteBehaviour : MonoBehaviour
     void Start ()
     {
         audi = gameObject.GetComponent<AudioSource>();
-        MainSoundController sc = new MainSoundController("string");
+        soundController = GameObject.Find("SoundController");
+
+        MainSoundController sound = soundController.GetComponent<MainSoundController>();
+        sound.Act = "Ambient";
 
     }
 

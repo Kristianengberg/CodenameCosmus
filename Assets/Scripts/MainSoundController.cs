@@ -5,19 +5,34 @@ public class MainSoundController : MonoBehaviour
 {
 
     public AudioSource[] audi;
+
+    public string Act;
     // Use this for initialization
     void Start()
     {
+
+        if (Act == "Bass")
+        {
+            audi[1].Play();
+        }
+
+        if (Act == "Ambient")
+        {
+            audi[0].Play();
+        }
+
     }
 
     public MainSoundController(string s)
     {
-        
+        this.Act = s;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
 
         if (Input.GetKey(KeyCode.P))
         {
