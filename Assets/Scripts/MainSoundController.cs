@@ -1,40 +1,58 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Threading;
 public class MainSoundController : MonoBehaviour
 {
 
-    public AudioSource[] audi;
+//    public AudioSource[] audi;
+    protected string Act;
 
-    public string Act;
-    // Use this for initialization
-    void Start()
+    protected AudioSource[] u2;
+    protected AudioClip clip2;
+    protected AudioClip clip;
+   // public GameObject soundPrefab;
+
+    public void someMethod(string s)
     {
+        this.Act = s;
+        u2 = GetComponents<AudioSource>(); // takes all the Audiosource components in the gameObject
+        playSound(Act);
+    }
+
+    protected void playSound(string Act)
+    {
+        if (Act == "Ambient")
+        {
+            clip = (AudioClip)Resources.Load(Act);
+            u2[0].PlayOneShot(clip);
+        }
 
         if (Act == "Bass")
         {
-            audi[1].Play();
+          clip2 = (AudioClip)Resources.Load(Act);
+          u2[1].PlayOneShot(clip2);
         }
 
-        if (Act == "Ambient")
-        {
-            audi[0].Play();
-        }
-
+        /* u = gameObject.AddComponent<AudioSource>();
+        clip = (AudioClip)Resources.Load(Act);
+        u.PlayOneShot(clip);
+        */
     }
 
-    public MainSoundController(string s)
+    // Use this for initialization
+    void Start()
     {
-        this.Act = s;
+        gameObject.AddComponent<AudioSource>(); // Used for Ambient
+        gameObject.AddComponent<AudioSource>(); // Used for Bass
+        //      Instantiate(soundPrefab, transform.position, transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Stop and play music ***********************
 
-
-
-        if (Input.GetKey(KeyCode.P))
+      /*  if (Input.GetKey(KeyCode.P))
         {
             foreach (AudioSource item in audi)
                 item.Play();
@@ -51,7 +69,7 @@ public class MainSoundController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.B))
             audi[0].Play();
-
+            */
 
     }
 }

@@ -9,15 +9,16 @@ public class NoteBehaviour : MonoBehaviour
     protected bool waitForSound;
     protected AudioSource audi;
 
+    protected GameObject type;
     protected GameObject soundController;
-
+    MainSoundController sound;
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "TimeSche")
         {
             col = true;
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed*Time.deltaTime);
-            
+            sound.someMethod(Instrument());
         }
     }
 
@@ -42,17 +43,26 @@ public class NoteBehaviour : MonoBehaviour
     {
         audi = gameObject.GetComponent<AudioSource>();
         soundController = GameObject.Find("SoundController");
-
-        MainSoundController sound = soundController.GetComponent<MainSoundController>();
-        sound.Act = "Ambient";
-
+        sound = soundController.GetComponent<MainSoundController>();
+        sound.someMethod(Instrument());
+ 
     }
 
+    protected string Instrument()
+    {
+        if (gameObject.name == "Ambient")
+            return "Ambient";
+
+        if (gameObject.name == "Bass")
+            return "Bass";
+
+        return null;
+    }
 
     // Update is called once per frame
         void Update () {
-        //hello
-            if (!col)
+
+        if (!col)
             {
                     transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             }
