@@ -39,6 +39,8 @@ public class NoteBehaviour : MonoBehaviour
     void Start ()
     {
         audi = gameObject.GetComponent<AudioSource>();
+        MainSoundController sc = new MainSoundController("string");
+
     }
 
 
