@@ -5,35 +5,42 @@ public class MainSoundController : MonoBehaviour
 {
 
     protected string Act;
-    protected AudioSource[] u2;
+    protected AudioSource[] Audio;
     protected AudioClip clip2;
     protected AudioClip clip;
-   // public GameObject soundPrefab;
 
-    public void someMethod(string s)
+    protected float volume;
+
+    protected string modification;
+
+    public void someMethod(string instrument, string volumeRegulation)
     {
-        this.Act = s;
-        u2 = GetComponents<AudioSource>(); // takes all the Audiosource components in the gameObject
+        this.modification = volumeRegulation;
+        this.Act = instrument;
+        Debug.Log(modification);
+        Audio = GetComponents<AudioSource>(); // takes all the Audiosource components in the gameObject
+        volumeModification(modification);
         playSound(Act);
+
     }
 
     protected void playSound(string Act)
     {
-
-
-
         if (Act == "Ambient")
         {
             clip = (AudioClip)Resources.Load(Act);
-            u2[0].PlayOneShot(clip);
+            Audio[0].PlayOneShot(clip,volume);
+            Debug.Log("Playing with the following volume :" + volume);
         }
 
         if (Act == "Bass")
         {
           clip2 = (AudioClip)Resources.Load(Act);
-          u2[1].PlayOneShot(clip2);
+          Audio[1].PlayOneShot(clip2, volume);
+            Debug.Log("Playing with the following volume :" + volume);
         }
 
+        
         /* u = gameObject.AddComponent<AudioSource>();
         clip = (AudioClip)Resources.Load(Act);
         u.PlayOneShot(clip);
@@ -51,34 +58,67 @@ public class MainSoundController : MonoBehaviour
           */
         gameObject.AddComponent<AudioSource>(); // Used for Ambient
         gameObject.AddComponent<AudioSource>(); // Used for Bass
-        //      Instantiate(soundPrefab, transform.position, transform.rotation);
 
 
+    }
+
+    protected float volumeModification(string modification)
+    {
+
+
+
+        if (modification == "Outer")
+        {
+            volume = 1;
+            return volume;
+        }
+
+        else if (modification == "Middle")
+        {
+            volume = .66f;
+            return volume;
+        }
+
+        else if (modification == "Inner")
+        {
+            volume = .33f;
+            return volume;
+        }
+        else return volume;
+    }
+
+
+
+    protected void pitchModification()
+    {
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
         // Stop and play music ***********************
 
-      /*  if (Input.GetKey(KeyCode.P))
-        {
-            foreach (AudioSource item in audi)
-                item.Play();
-        }
+        /*  if (Input.GetKey(KeyCode.P))
+          {
+              foreach (AudioSource item in audi)
+                  item.Play();
+          }
 
-        if (Input.GetKey(KeyCode.C))
-        {
-            foreach (AudioSource item in audi)
-                item.Stop();
-        }
+          if (Input.GetKey(KeyCode.C))
+          {
+              foreach (AudioSource item in audi)
+                  item.Stop();
+          }
 
-        if (Input.GetKey(KeyCode.C))
-            audi[1].Play();
+          if (Input.GetKey(KeyCode.C))
+              audi[1].Play();
 
-        if (Input.GetKey(KeyCode.B))
-            audi[0].Play();
-            */
+          if (Input.GetKey(KeyCode.B))
+              audi[0].Play();
+              */
 
     }
 }

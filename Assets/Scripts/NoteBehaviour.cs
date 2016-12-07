@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class NoteBehaviour : MonoBehaviour
 {
@@ -12,13 +11,36 @@ public class NoteBehaviour : MonoBehaviour
     protected GameObject type;
     protected GameObject soundController;
     MainSoundController sound;
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Inner")        
+        {
+            sound.someMethod(Instrument(), other.gameObject.name);
+            Debug.Log(other.gameObject.name);
+        }
+        
+        else if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Middle")
+        {
+            sound.someMethod(Instrument(), other.gameObject.name);
+            Debug.Log(other.gameObject.name);
+        }
+
+        else if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Outer")
+        {
+            sound.someMethod(Instrument(), other.gameObject.name);
+            Debug.Log(other.gameObject.name);
+        }
+    }
+
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "TimeSche")
+        if (other.gameObject.tag == "TimeSche" )
         {
             col = true;
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed*Time.deltaTime);
-            sound.someMethod(Instrument());
+
+
         }
     }
 
@@ -30,20 +52,15 @@ public class NoteBehaviour : MonoBehaviour
         }
     }
     
-    IEnumerator waitForNextSoundTreshHold()
-    {
-        yield return new WaitForSeconds(3);
-    }
-
     // Use this for initialization
     void Start ()
     {
         audi = gameObject.GetComponent<AudioSource>();
         soundController = GameObject.Find("SoundController");
         sound = soundController.GetComponent<MainSoundController>();
-        sound.someMethod(Instrument());
- 
+      //  sound.someMethod(Instrument());
     }
+
 
     protected string Instrument()
     {
