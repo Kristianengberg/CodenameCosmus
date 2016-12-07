@@ -22,8 +22,6 @@ public class NoteBehaviour : MonoBehaviour
         }
     }
 
-
-
    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "TimeSche")
@@ -31,7 +29,6 @@ public class NoteBehaviour : MonoBehaviour
             col = false;
         }
     }
-
     
     IEnumerator waitForNextSoundTreshHold()
     {
@@ -63,22 +60,10 @@ public class NoteBehaviour : MonoBehaviour
         void Update () {
 
         if (!col)
-            {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
             if (col)
-            {
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed * Time.deltaTime);
-        
-        
-            if (!audi.isPlaying)
-            {
-                // StartCoroutine(waitForNextSoundTreshHold());
-                audi.Play(2 / 44100);
-             }
-
-        }
     }
 }
 

@@ -4,9 +4,7 @@ using System.Threading;
 public class MainSoundController : MonoBehaviour
 {
 
-//    public AudioSource[] audi;
     protected string Act;
-
     protected AudioSource[] u2;
     protected AudioClip clip2;
     protected AudioClip clip;
@@ -21,6 +19,9 @@ public class MainSoundController : MonoBehaviour
 
     protected void playSound(string Act)
     {
+
+
+
         if (Act == "Ambient")
         {
             clip = (AudioClip)Resources.Load(Act);
@@ -51,6 +52,8 @@ public class MainSoundController : MonoBehaviour
         gameObject.AddComponent<AudioSource>(); // Used for Ambient
         gameObject.AddComponent<AudioSource>(); // Used for Bass
         //      Instantiate(soundPrefab, transform.position, transform.rotation);
+
+
     }
 
     // Update is called once per frame
