@@ -42,6 +42,12 @@ public class MainSoundController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Do this method instead when a proper reference is established
+        /*        foreach (GameObject gameobject in audioBlocks)
+                {
+                        gameObject.AddComponent<AudioSource>();
+                }
+          */
         gameObject.AddComponent<AudioSource>(); // Used for Ambient
         gameObject.AddComponent<AudioSource>(); // Used for Bass
         //      Instantiate(soundPrefab, transform.position, transform.rotation);
