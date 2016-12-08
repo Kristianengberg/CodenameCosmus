@@ -30,14 +30,12 @@ public class MainSoundController : MonoBehaviour
         {
             clip = (AudioClip)Resources.Load(Act);
             Audio[0].PlayOneShot(clip,volume);
-            Debug.Log("Playing with the following volume :" + volume);
         }
 
         if (Act == "Bass")
         {
           clip2 = (AudioClip)Resources.Load(Act);
           Audio[1].PlayOneShot(clip2, volume);
-            Debug.Log("Playing with the following volume :" + volume);
         }
 
         
