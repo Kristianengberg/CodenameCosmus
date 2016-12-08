@@ -39,8 +39,6 @@ public class NoteBehaviour : MonoBehaviour
         {
             col = true;
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed*Time.deltaTime);
-
-
         }
     }
 
@@ -74,12 +72,13 @@ public class NoteBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-        void Update () {
+    void Update()
+    {
 
         if (!col)
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-            if (col)
+        if (col)
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed * Time.deltaTime);
     }
 }

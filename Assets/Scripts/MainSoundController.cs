@@ -3,7 +3,6 @@ using System.Collections;
 using System.Threading;
 public class MainSoundController : MonoBehaviour
 {
-
     protected string Act;
     protected AudioSource[] Audio;
     protected AudioClip clip2;
@@ -20,7 +19,7 @@ public class MainSoundController : MonoBehaviour
         this.modification = volumeRegulation;
         this.Act = instrument;
         Debug.Log(modification);
-        Audio = GetComponents<AudioSource>(); // takes all the Audiosource components in the gameObject
+        Audio = GetComponents<AudioSource>(); // Takes all the Audiosource components stored in the gameObject
         volumeModification(modification);
         playSound(Act);
     }
@@ -42,7 +41,6 @@ public class MainSoundController : MonoBehaviour
             Audio[1].volume = volume;
             Audio[1].Play();
         }
-
     }
 
     // Use this for initialization
@@ -92,21 +90,14 @@ public class MainSoundController : MonoBehaviour
     {
         if (!bol)
         {
-
             foreach (AudioSource item in Audio)
-            {
                 item.Play();
-            }
         }
 
         if (bol)
         {
-
-               foreach (AudioSource item in Audio)
-            {
+            foreach (AudioSource item in Audio)
                 item.Stop();
-            }
-
         }
     }
     // Update is called once per frame
