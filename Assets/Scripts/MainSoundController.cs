@@ -13,6 +13,8 @@ public class MainSoundController : MonoBehaviour
 
     protected string modification;
 
+    GameObject[] MusicBlocks;
+
     public void someMethod(string instrument, string volumeRegulation)
     {
         this.modification = volumeRegulation;
@@ -21,7 +23,6 @@ public class MainSoundController : MonoBehaviour
         Audio = GetComponents<AudioSource>(); // takes all the Audiosource components in the gameObject
         volumeModification(modification);
         playSound(Act);
-
     }
 
     protected void playSound(string Act)
@@ -29,42 +30,40 @@ public class MainSoundController : MonoBehaviour
         if (Act == "Ambient")
         {
             clip = (AudioClip)Resources.Load(Act);
-            Audio[0].PlayOneShot(clip,volume);
+            Audio[0].clip = clip;
+            Audio[0].volume = volume;
+            Audio[0].Play();
         }
 
         if (Act == "Bass")
         {
-          clip2 = (AudioClip)Resources.Load(Act);
-          Audio[1].PlayOneShot(clip2, volume);
+            clip2 = (AudioClip)Resources.Load(Act);
+            Audio[1].clip = clip2;
+            Audio[1].volume = volume;
+            Audio[1].Play();
         }
 
-        
-        /* u = gameObject.AddComponent<AudioSource>();
-        clip = (AudioClip)Resources.Load(Act);
-        u.PlayOneShot(clip);
-        */
     }
 
     // Use this for initialization
     void Start()
     {
+        establishAudioSources();
+    }
+
+    protected void establishAudioSources()
+    {
+        MusicBlocks = GameObject.FindGameObjectsWithTag("MusicBlock");
         // Do this method instead when a proper reference is established
-        /*        foreach (GameObject gameobject in audioBlocks)
-                {
-                        gameObject.AddComponent<AudioSource>();
-                }
-          */
-        gameObject.AddComponent<AudioSource>(); // Used for Ambient
-        gameObject.AddComponent<AudioSource>(); // Used for Bass
 
-
+        foreach (GameObject gameobject in MusicBlocks)
+        {
+            gameObject.AddComponent<AudioSource>();
+        }
     }
 
     protected float volumeModification(string modification)
     {
-
-
-
         if (modification == "Outer")
         {
             volume = 1;
@@ -85,8 +84,6 @@ public class MainSoundController : MonoBehaviour
         else return volume;
     }
 
-
-
     protected void pitchModification()
     {
     }
@@ -104,7 +101,8 @@ public class MainSoundController : MonoBehaviour
 
         if (bol)
         {
-            foreach (AudioSource item in Audio)
+
+               foreach (AudioSource item in Audio)
             {
                 item.Stop();
             }
