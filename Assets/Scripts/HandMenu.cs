@@ -25,6 +25,8 @@ public class HandMenu : MonoBehaviour
     float yPos;
     float zPos;
 
+    MainSoundController sound;
+
     // Use this for initialization
     void Start()
     {
@@ -45,6 +47,8 @@ public class HandMenu : MonoBehaviour
         synthButton5 = Instantiate(Resources.Load("SynthButton5"), new Vector3(xPos, yPos, zPos), Quaternion.Euler(90f, 0f, 0f)) as GameObject;
 
         RightIndex = GameObject.FindGameObjectWithTag("RightIndex");
+
+       
     }
 
     // Update is called once per frame
@@ -218,7 +222,7 @@ public class HandMenu : MonoBehaviour
     GameObject synth, synth2, synth3, synth4, synth5;
 
     bool buttonNotPressed = true;
-    int caseSwitch = 1;
+    int caseSwitch = 0;
 
     void OnTriggerEnter(Collider other)
     {
@@ -227,18 +231,28 @@ public class HandMenu : MonoBehaviour
         if (GameObject.FindWithTag("LeftArm").transform.rotation.z >= 0.70)
         {
             
+           /* if (other.tag == "BeatPageButton" && gameObject.tag == "RightIndex")
+            {
+
+
+                 GameObject.Find("SynthButton").GetComponent<Renderer>().material.color = Color.clear;
+                 GameObject.Find("SynthButton2").GetComponent<Renderer>().material.color = Color.clear;
+                 GameObject.Find("SynthButton3").GetComponent<Renderer>().material.color = Color.clear;
+                 GameObject.Find("SynthButton4").GetComponent<Renderer>().material.color = Color.clear;
+                 GameObject.Find("SynthButton5").GetComponent<Renderer>().material.color = Color.clear;
+
+                caseSwitch = 1;
+                colorSwitch = 1;
+
+            }*/
+
             if (other.tag == "BeatPageButton" && gameObject.tag == "RightIndex")
             {
 
 
-                /* GameObject.Find("SynthButton").GetComponent<Renderer>().material.color = Color.clear;
-                 GameObject.Find("SynthButton2").GetComponent<Renderer>().material.color = Color.clear;
-                 GameObject.Find("SynthButton3").GetComponent<Renderer>().material.color = Color.clear;
-                 GameObject.Find("SynthButton4").GetComponent<Renderer>().material.color = Color.clear;
-                 GameObject.Find("SynthButton5").GetComponent<Renderer>().material.color = Color.clear;*/
+                sound.StopPlayMusic(true);
 
-                caseSwitch = 1;
-                colorSwitch = 1;
+
 
             }
 

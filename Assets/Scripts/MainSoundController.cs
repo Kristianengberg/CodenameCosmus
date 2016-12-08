@@ -91,6 +91,26 @@ public class MainSoundController : MonoBehaviour
     {
     }
 
+    public void StopPlayMusic(bool bol)
+    {
+        if (!bol)
+        {
+
+            foreach (AudioSource item in Audio)
+            {
+                item.Play();
+            }
+        }
+
+        if (bol)
+        {
+            foreach (AudioSource item in Audio)
+            {
+                item.Stop();
+            }
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
