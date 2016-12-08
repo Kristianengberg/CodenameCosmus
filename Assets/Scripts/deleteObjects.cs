@@ -9,21 +9,20 @@ public class deleteObjects : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        musicBlock = GameObject.FindGameObjectWithTag("MusicBlock");
-        musicBlocks = GameObject.FindGameObjectsWithTag("MusicBlock");
+     //     musicBlocks = GameObject.FindGameObjectsWithTag("MusicBlock");
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == musicBlock)
-            Destroy(musicBlock);
+        if (other.gameObject.tag == "MusicBlock")
+            Destroy(other.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+ /*       if (Input.GetKey(KeyCode.A))
             foreach (GameObject item in musicBlocks)
                 Destroy(item);
-    }
+   */ }
 }
