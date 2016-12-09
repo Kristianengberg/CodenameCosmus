@@ -18,7 +18,6 @@ public class MainSoundController : MonoBehaviour
     {
         this.modification = volumeRegulation;
         this.Act = instrument;
-        Debug.Log(modification);
         Audio = GetComponents<AudioSource>(); // Takes all the Audiosource components stored in the gameObject
         volumeModification(modification);
         playSound(Act);

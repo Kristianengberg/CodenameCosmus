@@ -26,6 +26,8 @@ public class HandMenu : MonoBehaviour
     float zPos;
 
     MainSoundController sound;
+    NoteBehaviour noteSpeed;
+    bool paused;
 
     // Use this for initialization
     void Start()
@@ -47,14 +49,29 @@ public class HandMenu : MonoBehaviour
         synthButton5 = Instantiate(Resources.Load("SynthButton5"), new Vector3(xPos, yPos, zPos), Quaternion.Euler(90f, 0f, 0f)) as GameObject;
 
         RightIndex = GameObject.FindGameObjectWithTag("RightIndex");
+    }
+    
+    protected void someHandInteraction() // This is the pause start function of the speed
+    {
+        if (Input.GetKey(KeyCode.O))     // Change this to collision interaction instead of a button press
+        {
+            if (paused)
+            {
+                noteSpeed.SpeedPaused(true);
+                paused = false;
+            }
 
-       
+            else if (!paused)
+            {
+                noteSpeed.SpeedPaused(false);
+                paused = true;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (GameObject.Find("CapsuleHand_L") != null)
         {
             xPos = GameObject.FindWithTag("LeftHandPalm").transform.position.x;

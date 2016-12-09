@@ -3,7 +3,7 @@
 public class NoteBehaviour : MonoBehaviour
 {
     private bool col = false;
-    public float speed = 20;
+    protected float speed;
     protected Vector3 locationPoint = new Vector3(0, 1, 0);
     protected bool waitForSound;
     protected AudioSource audi;
@@ -11,25 +11,24 @@ public class NoteBehaviour : MonoBehaviour
     protected GameObject type;
     protected GameObject soundController;
     MainSoundController sound;
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Inner")        
         {
             sound.someMethod(Instrument(), other.gameObject.name);
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
         }
         
         else if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Middle")
         {
             sound.someMethod(Instrument(), other.gameObject.name);
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
         }
 
         else if (other.gameObject.tag == "TimeSche" && other.gameObject.name == "Outer")
         {
             sound.someMethod(Instrument(), other.gameObject.name);
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
         }
     }
 
@@ -49,10 +48,20 @@ public class NoteBehaviour : MonoBehaviour
             col = false;
         }
     }
+
+    public void SpeedPaused(bool bol)
+    {
+        if (!bol)
+            this.speed = 20;
+
+        else
+            this.speed = 0;
+    }
     
     // Use this for initialization
     void Start ()
     {
+        this.speed = 20;
         audi = gameObject.GetComponent<AudioSource>();
         soundController = GameObject.Find("SoundController");
         sound = soundController.GetComponent<MainSoundController>();
@@ -82,5 +91,3 @@ public class NoteBehaviour : MonoBehaviour
             gameObject.transform.RotateAround(locationPoint, Vector3.up, speed * Time.deltaTime);
     }
 }
-
-
